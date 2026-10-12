@@ -1,0 +1,11 @@
+seed,naive.alerts,naive.false_alerts,naive.incidents_detected,naive.duplicates_dropped,idempotent.alerts,idempotent.false_alerts,idempotent.incidents_detected,idempotent.duplicates_dropped,events,delivered
+1,18,10,2,0,8,0,2,3301,54550,57851
+2,18,10,2,0,8,0,2,3679,57712,61391
+3,19,11,2,0,8,0,2,3875,63503,67378
+4,21,13,2,0,8,0,2,3845,61275,65120
+5,16,9,2,0,7,0,2,3578,58659,62237
+6,18,10,2,0,8,0,2,3337,54831,58168
+7,17,9,2,0,8,0,2,3079,51244,54323
+8,15,7,2,0,8,0,2,3687,60650,64337
+9,20,12,2,0,8,0,2,3538,55179,58717
+10,14,8,2,0,6,0,2,3350,55185,58535
