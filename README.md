@@ -1,6 +1,7 @@
 # Separating Intelligence from Authority — reference implementation
 
-Companion code for the paper "Separating Intelligence from Authority: A Control-Boundary Architecture and Fault-Injection Evaluation for Trustworthy AI Integration"
+Companion code for the paper "Separating Intelligence from Authority: A Control-Boundary Architecture and Fault-Injection Evaluation for Trustworthy AI Integration."
+
 It implements the hybrid payment platform and runs four experiments on **synthetic data only**. No real customer, bank,
 or production data is used; all parameters are illustrative.
 
@@ -24,13 +25,13 @@ or production data is used; all parameters are illustrative.
 - **E4 At-least-once delivery**: 2% duplicate events plus a one-hour replay. Compares naive and idempotent consumers.
 
 ## Reproduce
-Tested with Python 3.13 on Windows.
+Tested with Python 3.13 on Windows and Linux.
 
 ```bash
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-python run_all.py        # about 3 minutes; writes results/*.csv, summary.json, series_seed1.npz
+python run_all.py        # about 1–3 minutes; writes results/*.csv, summary.json, series_seed1.npz
 python make_figure.py    # writes results/Figure3_evaluation.png and .pdf
 ```
 
@@ -44,13 +45,22 @@ training is not bit-for-bit identical across platforms. The conclusions do not c
 pinned versions in `requirements.txt` to match the paper most closely.
 
 ## Key results (mean ± SD over 10 seeds)
-See `results/summary.json`, the per-seed CSV files.
+| Experiment | Comparison | Result |
+|---|---|---|
+| E1 | No time budget | 61.3% ± 0.3% of legitimate payments failed during the fault |
+| E1 | Time budget + fallback | 0% failed; model scoring resumed 72.4 ± 0.8 s after recovery |
+| E1 | + circuit breaker | 0% failed; model scoring resumed 2.6 ± 0.5 s after recovery |
+| E2 | Input-drift PSI | Max PSI ≤ 0.004; no alarm in any seed |
+| E2 | Outcome monitor | Alarm 6.3 ± 0.5 days after drift onset |
+| E3 | Shadow gate | Rejected 10/10 faulty releases; promoted 10/10 correct releases |
+| E4 | Event-ID deduplication | 0 false alerts/day vs. 9.9 ± 1.8 without deduplication |
+
+Full statistics are in `results/summary.json` and the per-seed CSV files.
 
 ## Limitations
 This is a simulation, not a production measurement. It shows the direction and relative size of
 each effect. Workload, latency, fraud, and label-delay parameters are assumptions and can be changed
 in `aiarch/`.
-
 
 ## License
 MIT. See [LICENSE](LICENSE).
