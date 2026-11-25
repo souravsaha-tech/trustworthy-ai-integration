@@ -1,8 +1,7 @@
 # Separating Intelligence from Authority — reference implementation
 
-Companion code for the IEEE Software manuscript *"Separating Intelligence from Authority:
-Patterns for Trustworthy AI Integration."* It implements the hybrid payment platform from the
-paper (Figure 2) and runs four experiments on **synthetic data only**. No real customer, bank,
+Companion code for the paper "Separating Intelligence from Authority: A Control-Boundary Architecture and Fault-Injection Evaluation for Trustworthy AI Integration"
+It implements the hybrid payment platform and runs four experiments on **synthetic data only**. No real customer, bank,
 or production data is used; all parameters are illustrative.
 
 ## What is implemented
@@ -45,7 +44,7 @@ training is not bit-for-bit identical across platforms. The conclusions do not c
 pinned versions in `requirements.txt` to match the paper most closely.
 
 ## Key results (mean ± SD over 10 seeds)
-See `results/summary.json`, the per-seed CSV files, and Table 2 of the paper.
+See `results/summary.json`, the per-seed CSV files.
 
 ## Limitations
 This is a simulation, not a production measurement. It shows the direction and relative size of
